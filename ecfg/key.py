@@ -3,7 +3,7 @@ import os
 import pathlib
 
 
-def read_private_key(path: pathlib.Path) -> str:
+def read_private_key(path):
     with path.open():
         data = path.read_text()
 
@@ -15,8 +15,7 @@ def read_private_key(path: pathlib.Path) -> str:
     return private_key
 
 
-def load_private_key(public_key: str) -> str:
-
+def load_private_key(public_key):
     default_keydir = '/opt/ejson/keys'
     keydir = os.environ.get('EJSON_KEYDIR', default_keydir)
 

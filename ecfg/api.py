@@ -5,7 +5,7 @@ from .crypto import decrypt_dict
 from .key import load_private_key
 
 
-def load(path: str) -> dict:
+def load(path):
     """Decrypt a ejson file, return the decrypted dict.
 
     The private key will be loaded from:
