@@ -16,3 +16,4 @@ script:
   - rm -rf dist && python setup.py sdist && pip install dist/*.tar.gz
   - pipenv run py.test -v
   - pipenv run pylama
+  - python setup.py bdist_wheel
