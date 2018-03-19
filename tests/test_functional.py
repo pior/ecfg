@@ -48,3 +48,8 @@ def test_load_into_environment():
     ecfg.load_into_environ(fixture('environment.json'))
 
     assert os.environ.get('TEST_ECFG_TEST') == 'ENVIRONMENT_SECRET'
+
+
+def test_load_file_not_found():
+    with pytest.raises(FileNotFoundError):
+        ecfg.load('no-file')
