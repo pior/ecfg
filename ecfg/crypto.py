@@ -1,4 +1,8 @@
 from base64 import b64decode
+try:
+    basestring
+except NameError:
+    basestring = str
 
 from nacl.public import Box, PrivateKey, PublicKey
 
@@ -19,7 +23,7 @@ def decrypt_dict(d, private_key):
     def process(name, value):
         if isinstance(value, dict):
             return decrypt_dict(value, private_key)
-        if isinstance(value, str) and not name.startswith('_'):
+        if isinstance(value, basestring) and not name.startswith('_'):
             return decrypt_message(value, private_key)
         return value
 
