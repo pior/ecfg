@@ -5,7 +5,7 @@ from .crypto import decrypt_dict
 from .key import load_private_key
 
 
-def load(path: str) -> dict:
+def load(path):
     """Decrypt a ejson file, return the decrypted dict.
 
     The private key will be loaded from:
@@ -21,10 +21,11 @@ def load(path: str) -> dict:
     enc_environment = content.pop('environment', {})
     enc_secrets = content.copy()
 
-    return {
+    output = {
         'environment': decrypt_dict(enc_environment, private_key),
-        **decrypt_dict(enc_secrets, private_key),
     }
+    output.update(decrypt_dict(enc_secrets, private_key))
+    return output
 
 
 def load_into_environ(path):

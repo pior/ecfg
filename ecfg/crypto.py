@@ -1,9 +1,13 @@
 from base64 import b64decode
+try:
+    basestring
+except NameError:
+    basestring = str
 
 from nacl.public import Box, PrivateKey, PublicKey
 
 
-def decrypt_message(msg: str, private_key: str) -> str:
+def decrypt_message(msg, private_key):
     header, b64_encpub, b64_nonce, b64_box = msg.split(':')
     encpub = b64decode(b64_encpub)
     nonce = b64decode(b64_nonce)
@@ -15,11 +19,11 @@ def decrypt_message(msg: str, private_key: str) -> str:
     return decrypted.decode('utf-8')
 
 
-def decrypt_dict(d: dict, private_key: str) -> dict:
+def decrypt_dict(d, private_key):
     def process(name, value):
         if isinstance(value, dict):
             return decrypt_dict(value, private_key)
-        if isinstance(value, str) and not name.startswith('_'):
+        if isinstance(value, basestring) and not name.startswith('_'):
             return decrypt_message(value, private_key)
         return value
 
