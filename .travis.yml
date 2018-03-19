@@ -9,10 +9,10 @@ python:
 cache: pip
 
 install:
-  - pip install -U -e .
   - pip install -U setuptools pipenv
   - pipenv install --dev
 
 script:
+  - rm -rf dist && python setup.py sdist && pip install dist/*.tar.gz
   - pipenv run py.test -v
   - pipenv run pylama
