@@ -8,7 +8,7 @@ See `github repo <https://github.com/pior/ecfg>`_ for information.
 
 setup(
     name='ecfg',
-    version='0.3',
+    version='0.4',
     description='Python implementation for Shopify/ecfg',
     long_description=description,
     classifiers=[
